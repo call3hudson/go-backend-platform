@@ -25,11 +25,14 @@ func main() {
 
 	services.RegisterDefaultServices()
 
-	// var cfg config.Configuration
-	// services.GetService(&cfg)
-
-	// var logger logging.Logger
-	// services.GetService(&logger)
-
 	services.Call(writeMessage)
+
+	val := struct {
+		message string
+		logging.Logger
+	}{
+		message: "Hello from the struct",
+	}
+	services.Populate(&val)
+	val.Logger.Debug(val.message)
 }
