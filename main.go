@@ -4,6 +4,7 @@ import (
 	// "fmt"
 	"platform/config"
 	"platform/logging"
+	"platform/placeholder"
 	"platform/services"
 )
 
@@ -22,17 +23,6 @@ func writeMessage(logger logging.Logger, cfg config.Configuration) {
 }
 
 func main() {
-
 	services.RegisterDefaultServices()
-
-	services.Call(writeMessage)
-
-	val := struct {
-		message string
-		logging.Logger
-	}{
-		message: "Hello from the struct",
-	}
-	services.Populate(&val)
-	val.Logger.Debug(val.message)
+	placeholder.Start()
 }
