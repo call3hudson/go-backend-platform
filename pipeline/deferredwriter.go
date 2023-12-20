@@ -23,6 +23,6 @@ func (dw *DeferredResponseWriter) FlushData() {
 	dw.ResponseWriter.Write([]byte(dw.Builder.String()))
 }
 
-func (dw *DeferredResponseWriter) writeHeader(statusCode int) {
+func (dw *DeferredResponseWriter) WriteHeader(statusCode int) {
 	dw.statusCode = statusCode
 }

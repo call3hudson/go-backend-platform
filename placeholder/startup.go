@@ -33,6 +33,9 @@ func createPipeline() pipeline.RequestPipeline {
 
 func Start() {
 	sessions.RegisterSessionService()
+	authorization.RegisterDefaultSignInService()
+	authorization.RegisterDefaultUserService()
+	RegisterPlaceholderUserStore()
 	results, err := services.Call(http.Serve, createPipeline())
 	if err == nil {
 		(results[0].(*sync.WaitGroup)).Wait()
